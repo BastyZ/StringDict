@@ -21,7 +21,7 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public void insert(String key, int value) {
-    int test; //ubicación de prueba
+    int test; //ubicacion de prueba
     int h = code(key); //hashCode
     if (table.[h] == null){
       //si el espacio esta libre
