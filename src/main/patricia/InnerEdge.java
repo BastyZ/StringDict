@@ -2,13 +2,29 @@ package main.patricia;
 
 public class InnerEdge extends Edge {
 
-  private Edge left;
-  private Edge right;
+  private Edge leftSon;
+  private Edge rightSon;
 
   InnerEdge(String key, Edge left, Edge right) {
     super(key);
-    this.left = left;
-    this.right = right;
+    this.leftSon = left;
+    this.rightSon = right;
+  }
+
+  public Edge getLeftSon() {
+    return leftSon;
+  }
+
+  public Edge getRightSon() {
+    return rightSon;
+  }
+
+  public void setLeftSon(Edge leftSon) {
+    this.leftSon = leftSon;
+  }
+
+  public void setRightSon(Edge rightSon) {
+    this.rightSon = rightSon;
   }
 
 }
