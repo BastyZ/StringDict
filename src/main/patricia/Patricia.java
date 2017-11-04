@@ -4,6 +4,7 @@ import java.util.List;
 import main.StringDictionary;
 
 public class Patricia implements StringDictionary {
+  private Edge edge;
 
   @Override
   public void insert(String key, int value) {
