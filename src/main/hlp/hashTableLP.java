@@ -1,8 +1,11 @@
 package main.hlp;
 
+import java.lang.Math.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import main.StringDictionary;
-import main.hlp.hashItem;
+
 
 public class hashTableLP implements StringDictionary{
   private final int SIZE;
@@ -16,14 +19,14 @@ public class hashTableLP implements StringDictionary{
 
   /*Funcion de hash*/
   private int code(String key){
-    return (Math.abs.(key.hashCode())%SIZE);
-  }
+    return (Math.abs(key.hashCode())%SIZE);
+}
 
   @Override
   public void insert(String key, int value) {
     int test; //ubicacion de prueba
     int h = code(key); //hashCode
-    if (table.[h] == null){
+    if (table[h] == null){
       //si el espacio esta libre
       table[h] = new hashItem(key,value);
       test = -1;
@@ -60,7 +63,7 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public List<Integer> search(String key) {
-    List<Integer> l = new List<Integer>;
+    List<Integer> l = new ArrayList<Integer>();
     l.add(retrieve(key));
     return l;
   }
@@ -83,7 +86,7 @@ public class hashTableLP implements StringDictionary{
       }
     }
 
-    while((test != -1 && (test != h)){
+    while((test != -1) && (test != h)){
       if (table[test] == null){
         return null;
       } else if (table[test].key.equals(key)){

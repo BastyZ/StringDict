@@ -1,3 +1,5 @@
+package main.hlp;
+
 public class hashItem{
   public int value;
   public String key;
