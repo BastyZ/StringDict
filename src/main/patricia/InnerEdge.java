@@ -13,12 +13,14 @@ public class InnerEdge extends Edge {
     this.rightSon = right;
   }
 
+  @Override
   Edge getLeftSon() {
-    return leftSon;
+    return this.leftSon;
   }
 
+  @Override
   Edge getRightSon() {
-    return rightSon;
+    return this.rightSon;
   }
 
   void setLeftSon(Edge leftSon) {
@@ -33,8 +35,19 @@ public class InnerEdge extends Edge {
     return null;
   }
 
-  public List<Integer> search(String key) {
-    return null;
+  public List<Integer> search(String key) throws Exception {
+    if (super.prefix().contentEquals(key) || !super.prefix().startsWith(key)) {
+      throw new Exception();
+    }
+    String keySuffix;
+    keySuffix = (String) key.subSequence(super.prefixSize()-1,key.length()-1);
+    if (this.leftSon.prefix().startsWith(keySuffix)) {
+      return this.leftSon.search(keySuffix);
+    } else if (this.rightSon.prefix().startsWith(keySuffix)){
+      return this.rightSon.search(keySuffix);
+    } else {
+      throw new Exception();
+    }
   }
 
   public void leafInsertion(String key, int value) {

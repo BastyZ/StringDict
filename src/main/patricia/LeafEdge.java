@@ -23,11 +23,16 @@ public class LeafEdge extends Edge {
     return null;
   }
 
-  public List<Integer> search(String key) {
-    return null;
+  public List<Integer> search(String key) throws Exception {
+    if (super.prefix().contentEquals(key)) {
+      return this.getValue();
+    } else {
+      throw new Exception();
+    }
   }
 
   public void leafInsertion(String key, int value) {
 
   }
+
 }

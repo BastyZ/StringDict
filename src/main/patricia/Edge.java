@@ -5,8 +5,20 @@ import java.util.List;
 abstract class Edge {
   private String prefix;
 
+  String prefix() {
+    return prefix;
+  }
+
   Edge(String key) {
     this.prefix = key;
+  }
+
+  Edge getLeftSon() throws NoSuchChild {
+    throw new NoSuchChild();
+  }
+
+  Edge getRightSon() throws NoSuchChild {
+    throw new NoSuchChild();
   }
 
   int prefixSize(){
