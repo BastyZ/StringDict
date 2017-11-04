@@ -1,5 +1,7 @@
 package main.patricia;
 
+import java.util.List;
+
 public class InnerEdge extends Edge {
 
   private Edge leftSon;
@@ -11,20 +13,35 @@ public class InnerEdge extends Edge {
     this.rightSon = right;
   }
 
-  public Edge getLeftSon() {
+  Edge getLeftSon() {
     return leftSon;
   }
 
-  public Edge getRightSon() {
+  Edge getRightSon() {
     return rightSon;
   }
 
-  public void setLeftSon(Edge leftSon) {
+  void setLeftSon(Edge leftSon) {
     this.leftSon = leftSon;
   }
 
-  public void setRightSon(Edge rightSon) {
+  void setRightSon(Edge rightSon) {
     this.rightSon = rightSon;
   }
 
+  public Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern {
+    return null;
+  }
+
+  public Edge search(String key) {
+    return null;
+  }
+
+  public List<Integer> getValues() {
+    return null;
+  }
+
+  public void leafInsertion(String key, int value) {
+
+  }
 }

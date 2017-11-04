@@ -2,20 +2,13 @@ package main.patricia;
 
 import java.util.List;
 
-public class LeafEdge extends Edge {
-  private List<Integer> values;
+public class NullEdge extends Edge {
 
-  LeafEdge(String key, int value) {
-    super(key);
-    this.values.add(value);
+  NullEdge() {
+    super("");
   }
 
-  public List<Integer> getValue() {
-    return values;
-  }
-
-  @Override
-  public boolean isLeaf() {
+  public boolean isNull() {
     return true;
   }
 
@@ -23,8 +16,8 @@ public class LeafEdge extends Edge {
     return null;
   }
 
-  public Edge search(String key) {
-    return null;
+  public Edge search(String key) throws Exception {
+    throw new Exception();
   }
 
   public List<Integer> getValues() {
@@ -34,4 +27,5 @@ public class LeafEdge extends Edge {
   public void leafInsertion(String key, int value) {
 
   }
+
 }
