@@ -30,7 +30,7 @@ public class Patricia implements StringDictionary {
   @Override
   public List<Integer> search(String key) {
     try {
-      return root.search(key).getValues();
+      return root.search(key);
     } catch (Exception e) {
       return null;
     }

@@ -16,12 +16,8 @@ public class NullEdge extends Edge {
     return null;
   }
 
-  public Edge search(String key) throws Exception {
+  public List<Integer> search(String key) throws Exception {
     throw new Exception();
-  }
-
-  public List<Integer> getValues() {
-    return null;
   }
 
   public void leafInsertion(String key, int value) {

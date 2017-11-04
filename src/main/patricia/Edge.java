@@ -23,9 +23,7 @@ abstract class Edge {
 
   public abstract Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern;
 
-  public abstract Edge search(String key) throws Exception;
-
-  public abstract List<Integer> getValues();
+  public abstract List<Integer> search(String key) throws Exception;
 
   public abstract void leafInsertion(String key, int value);
 }

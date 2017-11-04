@@ -33,11 +33,7 @@ public class InnerEdge extends Edge {
     return null;
   }
 
-  public Edge search(String key) {
-    return null;
-  }
-
-  public List<Integer> getValues() {
+  public List<Integer> search(String key) {
     return null;
   }
 
