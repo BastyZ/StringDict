@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface ItstNode {
   public boolean isNull();
+  public String toString();
 
   public void setValue(int value);
   public void setLeft (ItstNode node);

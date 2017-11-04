@@ -29,7 +29,7 @@ public class NulltstNode implements ItstNode {
     * se avanza el index, si no hay más string se agrega el value a ese nodo
     * si no avanzamos caracter por caracter insertandolos segun los criterios dados
     * se entrega el pirmer nodo creado*/
-  }
+}
 
   @Override
   public List<Integer> getValue() {
@@ -63,6 +63,6 @@ public class NulltstNode implements ItstNode {
 
   @Override
   public int getSize() {
-    return 0;
+    return 8;
   }
 }
