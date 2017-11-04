@@ -63,12 +63,12 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public List<Integer> search(String key) {
-    List<Integer> l = new ArrayList<Integer>();
+    List<Integer> l = new ArrayList<>();
     l.add(retrieve(key));
     return l;
   }
 
-  public Integer retrieve(String key){
+  private Integer retrieve(String key){
     int test;
     int h = code(key);
 
