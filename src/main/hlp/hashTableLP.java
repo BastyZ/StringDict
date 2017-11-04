@@ -2,33 +2,60 @@ package main.hlp;
 
 import java.util.List;
 import main.StringDictionary;
+import main.hlp.hashItem;
 
 public class hashTableLP implements StringDictionary{
-  public final int SIZE;
-  private String[] table;
+  private final int SIZE;
+  private hashItem[] table;
 
-  /*Constructor al que le entregas el arreglo de Strings*/
-  @Override
-  public hashTableLP(String[] T) {
-    int k = T.length;
-    this(k);
-  }
-
-  /*Constructor al que le entregas el largo del arreglo de Strings T*/
-  @Override
+  /*Constructor al que se le entrega el largo del arreglo de Strings T*/
   public hashTableLP(int k){
     SIZE=k;
-    this.table= new String[SIZE];
+    this.table= new hashItem[SIZE];
   }
 
   /*Funcion de hash*/
-  public int code(String key){
+  private int code(String key){
     return (Math.abs.(key.hashCode())%SIZE);
   }
 
   @Override
   public void insert(String key, int value) {
+    int test; //ubicación de prueba
+    int h = code(key); //hashCode
+    if (table.[h] == null){
+      //si el espacio esta libre
+      table[h] = new hashItem(key,value);
+      test = -1;
+    } else {
+      if (h == (SIZE - 1)){
+        //si h es el final del arreglo empiezo a buscar desde el principio de este
+        test = 0;
+      } else {
+        //si no pruebo la siguiente posicion
+        test = h + 1;
+      }
+    }
 
+    //loop en busqueda del siguiente espacio vacio
+    while ((test != -1) && (test != h)){
+      if ((table[test] == null)){
+        table[test] = new hashItem(key,value);
+        test = -1;
+      } else {
+        if (test == (SIZE - 1)){
+          test = 0;
+        } else {
+          test++;
+        }
+      }
+    }
+
+    if (test != -1){
+      System.out.println("Inserción fallida, tabla de hash completa");
+    } else {
+      System.out.println("Inserción exitosa en la posición "+test+ "de la tabla de hash");
+    }
   }
 
   @Override
@@ -38,6 +65,6 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public long getSize() {
-    return SIZE;
+    return (long)SIZE;
   }
 }
