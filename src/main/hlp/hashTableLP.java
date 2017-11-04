@@ -63,6 +63,41 @@ public class hashTableLP implements StringDictionary{
     return null;
   }
 
+  public Integer retrieve(String key){
+    int test;
+    int h = code(key);
+
+    if (table[h] == null){
+      //si la posición inicial del hashCode esta vacio e spor que no existe
+      return null;
+    } else if (table[h].key.equals(key)){
+      //si coincide y es el mismo elemento, retornamos el valor
+      return table[h].value;
+    } else {
+      if (h == (SIZE - 1)){
+        test = 0;
+      } else {
+        test = h + 1;
+      }
+    }
+
+    while((test != -1 && (test != h)){
+      if (table[test] == null){
+        return null;
+      } else if (table[test].key.equals(key)){
+        return table[test].value;
+      } else {
+        if (test == (SIZE -1)){
+          test = 0;
+        } else {
+          test++;
+        }
+      }
+    }
+
+    return null;
+  }
+
   @Override
   public long getSize() {
     return (long)SIZE;
