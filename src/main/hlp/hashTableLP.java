@@ -60,7 +60,9 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public List<Integer> search(String key) {
-    return null;
+    List<Integer> l = new List<Integer>;
+    l.add(retrieve(key));
+    return l;
   }
 
   public Integer retrieve(String key){
