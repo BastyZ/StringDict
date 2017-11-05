@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class tstNode implements ItstNode{
-  private ItstNode father;
   private ItstNode left;
   private ItstNode middle;
   private ItstNode right;
@@ -12,7 +11,6 @@ public class tstNode implements ItstNode{
   private char data;
 
   public tstNode(char data){
-    this.father = null;
     this.left = new NulltstNode();
     this.middle = new NulltstNode();
     this.right = new NulltstNode();
@@ -35,7 +33,7 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  public void setLeft(ItstNode node) {
+  private void setLeft(ItstNode node) {
     this.left = node;
   }
 
@@ -45,14 +43,11 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  public void setRight(ItstNode node) {
+  private void setRight(ItstNode node) {
     this.right = node;
   }
 
-  @Override
-  public ItstNode insert(String key, int value, int index) {
-    /*TODO
-    * si el caracter en el la posición index del string key es MENOR a data
+  /*si el caracter en el la posición index del string key es MENOR a data
     * - insertamos en el hijo izquierdo, con la misma key, value e index
     *   y el resultado lo setea como hijo izquierdo
     * si el caracter en el la posición index del string key es MAYOR a data
@@ -62,7 +57,22 @@ public class tstNode implements ItstNode{
     * - si estamos al final de key agregamos value
     * - sino, insertamos en el hijo de al medio el mismo key y value pero aumentamos index
     *   y el resultado se setea como este hijo*/
-    return null;
+  @Override
+  public ItstNode insert(String key, int value, int index) {
+    char chr = key.charAt(index);
+    if (chr < this.data){
+      this.setLeft(this.getLeftChild().insert(key,value,index));
+    } else if (chr > this.data){
+      this.setRight(this.getRightChild().insert(key,value,index));
+    } else {
+      int end = key.length() - 1;
+      if (index == end){
+        this.setValue(value);
+      } else if (index < end){
+        this.setMiddle(this.getMiddleChild().insert(key,value,index + 1));
+      }
+    }
+    return this;
   }
 
   @Override
@@ -76,22 +86,17 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  public ItstNode getFather() {
-    return this.father;
-  }
-
-  @Override
-  public ItstNode getLeftChild() {
+  private ItstNode getLeftChild() {
     return this.left;
   }
 
   @Override
-  public ItstNode getMiddleChild() {
+  private ItstNode getMiddleChild() {
     return this.middle;
   }
 
   @Override
-  public ItstNode getRightChild() {
+  private ItstNode getRightChild() {
     return this.right;
   }
 
