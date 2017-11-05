@@ -23,19 +23,19 @@ public class tst implements StringDictionary {
     root = new tstNode('#'); //donde # marca el final de una palabra
   }
 
-  @Override
-  public List<Integer> search(String key) {
-    return null;
-    /*TODO
-    * si la llave es valida
+  /* si la llave es valida
     * -agregamos # al final de key
     * - iniciamos la busqueda recursiva con el nodo raiz, el string key e index 0*/
+  @Override
+  public List<Integer> search(String key) {
+    if (validString(key)){
+      key = key + '#';
+      return recursiveSearch(root,key,0);
+    }
+    return null;
   }
 
-  private List<Integer> recursiveSearch(ItstNode node, String str, int index){
-    return null;
-    /*TODO
-    * si el nodo es null retornamos un arreglo vacio
+  /*si el nodo es null retornamos un arreglo vacio
     * si el caracter en el la posición index del string str es MENOR al dato guardado en node
     * - seguimos la busqueda desde el hijo izquierdo del nodo, el mismo str e index
     * si el caracter en el la posición index del string str es MAYOR al dato guardado en node
@@ -43,19 +43,40 @@ public class tst implements StringDictionary {
     * sino, es decir, el caracter evaluado en str es IGUAL al dato de node
     * - si el index está al final de str, retornamos el valor guardado en el node
     * - sino seguimos la búsqueda por el hijo de al medio, con el mismo str y aumentamos el index*/
+  private List<Integer> recursiveSearch(ItstNode node, String str, int index){
+    if (node.isNull()){
+      return new ArrayList<>();
+    }
+    char chr = str.charAt(index);
+    char dt = node.getData();
+    if (chr < dt){
+      return recursiveSearch(node.getLeftChild(),str,index);
+    } else if (chr > dt){
+      return recursiveSearch(node.getRightChild(),str,index);
+    } else {
+      int end = str.length() - 1;
+      if (index == end){
+        return node.getValue();
+      } else {
+        return recursiveSearch(node.getMiddleChild(),str,index+1);
+      }
+    }
   }
 
-  @Override
-  public void insert(String key, int value) {
-  /*TODO
-  * si la llave es valida
+  /*si la llave es valida
   * -agregamos # al final del string
   * -inserta desde la raiz, dicho key y value con el index a partir de 0*/
+  @Override
+  public void insert(String key, int value) {
+    if (validString(key)){
+      key = key + '#';
+      root.insert(key,value,0);
+    }
   }
 
   @Override
   public long getSize() {
-    return (sigma.size() + root.getSize());
+    return (sigma.size()*2 + root.getSize() + 8*2);
   }
 
   private boolean validString (String str){
