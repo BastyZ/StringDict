@@ -12,14 +12,11 @@ public class NulltstNode implements ItstNode {
   @Override
   public void setValue(int value) {  }
 
-  @Override
-  private void setLeft(ItstNode node) {  }
+  public void setLeft(ItstNode node){}
 
+  public void setRight(ItstNode node){}
   @Override
   public void setMiddle(ItstNode node) {  }
-
-  @Override
-  private void setRight(ItstNode node) { }
 
   /*insertar un nodo nuevo para el caracter en la posicion index del string key
     * se avanza el index, si no hay más string se agrega el value a ese nodo
@@ -56,18 +53,15 @@ public class NulltstNode implements ItstNode {
     return 0;
   }
 
-  @Override
-  private ItstNode getLeftChild() {
+  public ItstNode getLeftChild() {
     return new NulltstNode();
   }
 
-  @Override
-  private ItstNode getMiddleChild() {
+  public ItstNode getMiddleChild() {
     return new NulltstNode();
   }
 
-  @Override
-  private ItstNode getRightChild() {
+  public ItstNode getRightChild() {
     return new NulltstNode();
   }
 

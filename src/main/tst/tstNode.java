@@ -33,7 +33,7 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  private void setLeft(ItstNode node) {
+  public void setLeft(ItstNode node) {
     this.left = node;
   }
 
@@ -43,7 +43,7 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  private void setRight(ItstNode node) {
+  public void setRight(ItstNode node) {
     this.right = node;
   }
 
@@ -86,17 +86,17 @@ public class tstNode implements ItstNode{
   }
 
   @Override
-  private ItstNode getLeftChild() {
+  public ItstNode getLeftChild() {
     return this.left;
   }
 
   @Override
-  private ItstNode getMiddleChild() {
+  public ItstNode getMiddleChild() {
     return this.middle;
   }
 
   @Override
-  private ItstNode getRightChild() {
+  public ItstNode getRightChild() {
     return this.right;
   }
 
