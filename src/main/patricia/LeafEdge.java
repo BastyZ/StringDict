@@ -10,7 +10,7 @@ public class LeafEdge extends Edge {
     this.values.add(value);
   }
 
-  public List<Integer> getValue() {
+  public List<Integer> getValues() {
     return values;
   }
 
@@ -19,17 +19,12 @@ public class LeafEdge extends Edge {
     return true;
   }
 
-  public Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern {
-    return null;
-  }
 
-  public List<Integer> search(String key) throws Exception {
+  public Edge searchNode(String key) throws Exception {
     if (super.prefix().contentEquals(key)) {
-      return this.getValue();
-    } else if (key.length() < super.prefixSize()) {
-      throw new EndOfPattern();
+      return this;
     } else {
-      throw new Exception();
+      throw new LeafReached(this);
     }
   }
 

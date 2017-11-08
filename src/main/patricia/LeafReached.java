@@ -1,9 +1,9 @@
 package main.patricia;
 
-public class EndOfPattern extends Exception {
+public class LeafReached extends Exception {
   Edge node;
 
-  public EndOfPattern(Edge edge) {
+  public LeafReached(Edge edge) {
     this.node = edge;
   }
 

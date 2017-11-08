@@ -18,12 +18,14 @@ public class Patricia implements StringDictionary {
     }
     Edge edge;
     try {
-      edge = root.searchNode(key,value);
+      edge = root.searchNode(key);
       edge.leafInsertion(key,value);
     } catch (EndOfPattern e) {
       // TODO caso donde no hay hijo que comience con la letra
     } catch (NoSuchChild e) {
       // TODO caso donde se acaba el patrón a seguir antes de llegar a una hoja
+    } catch (Exception e) {
+      // TODO para los otros casos
     }
   }
 

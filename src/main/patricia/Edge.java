@@ -16,7 +16,17 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
   }
 
   ArrayList<Edge> getChildren() throws NoSuchChild {
-    throw new NoSuchChild();
+    throw new NoSuchChild(this);
+  }
+
+  public abstract Edge searchNode(String key) throws Exception;
+
+  public List<Integer> search(String key) throws Exception {
+    return this.searchNode(key).getValues();
+  }
+
+  List<Integer> getValues() {
+    return null;
   }
 
   int prefixSize(){
@@ -39,9 +49,6 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
     return anEdge.prefix().compareTo(otherEdge.prefix());
   }
 
-  public abstract Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern;
-
-  public abstract List<Integer> search(String key) throws Exception;
-
   public abstract void leafInsertion(String key, int value);
+
 }
