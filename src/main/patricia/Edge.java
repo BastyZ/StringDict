@@ -1,8 +1,10 @@
 package main.patricia;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-abstract class Edge {
+abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
   private String prefix;
 
   String prefix() {
@@ -13,11 +15,7 @@ abstract class Edge {
     this.prefix = key;
   }
 
-  Edge getLeftSon() throws NoSuchChild {
-    throw new NoSuchChild();
-  }
-
-  Edge getRightSon() throws NoSuchChild {
+  ArrayList<Edge> getChildren() throws NoSuchChild {
     throw new NoSuchChild();
   }
 
@@ -31,6 +29,14 @@ abstract class Edge {
 
   boolean isNull() {
     return false;
+  }
+
+  public int compareTo(Edge edge) {
+    return this.prefix().compareTo(edge.prefix());
+  }
+
+  public int compare(Edge anEdge, Edge otherEdge) {
+    return anEdge.prefix().compareTo(otherEdge.prefix());
   }
 
   public abstract Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern;

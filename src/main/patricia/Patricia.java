@@ -20,9 +20,9 @@ public class Patricia implements StringDictionary {
     try {
       edge = root.searchNode(key,value);
       edge.leafInsertion(key,value);
-    } catch (NoSuchChild e) {
-      // TODO caso donde no hay hijo que comience con la letra
     } catch (EndOfPattern e) {
+      // TODO caso donde no hay hijo que comience con la letra
+    } catch (NoSuchChild e) {
       // TODO caso donde se acaba el patrón a seguir antes de llegar a una hoja
     }
   }

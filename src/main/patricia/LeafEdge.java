@@ -26,6 +26,8 @@ public class LeafEdge extends Edge {
   public List<Integer> search(String key) throws Exception {
     if (super.prefix().contentEquals(key)) {
       return this.getValue();
+    } else if (key.length() < super.prefixSize()) {
+      throw new EndOfPattern();
     } else {
       throw new Exception();
     }
