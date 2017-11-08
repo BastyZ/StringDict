@@ -42,4 +42,9 @@ public class InnerEdge extends Edge {
     // TODO insertion starting on leaf
   }
 
+  @Override
+  public Edge findLeaf() {
+    return this.children.get(0).findLeaf();
+  }
+
 }

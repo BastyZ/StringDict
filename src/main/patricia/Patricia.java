@@ -19,13 +19,23 @@ public class Patricia implements StringDictionary {
     Edge edge;
     try {
       edge = root.searchNode(key);
-      edge.leafInsertion(key,value);
+      edge.insert(value);
     } catch (EndOfPattern e) {
-      // TODO caso donde no hay hijo que comience con la letra
+      // caso donde se acaba el patrón a seguir antes de llegar a una hoja
+      Edge node = e.getNode();
+      Edge leaf = node.findLeaf();
+      leaf.leafInsertion(key,value);
     } catch (NoSuchChild e) {
-      // TODO caso donde se acaba el patrón a seguir antes de llegar a una hoja
+      // caso donde no hay hijo que comience con la letra
+      Edge node = e.getNode();
+      node.findLeaf().leafInsertion(key,value);
+    } catch (LeafReached e) {
+      // TODO caso donde se llega a la hoja y no hay match exacto
+      e.getNode().leafInsertion(key,value);
     } catch (Exception e) {
       // TODO para los otros casos
+      System.out.println("Fallo inesperado: ");
+      e.printStackTrace();
     }
   }
 

@@ -51,4 +51,9 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
 
   public abstract void leafInsertion(String key, int value);
 
+  public void insert(int value) {
+
+  }
+
+  public abstract Edge findLeaf();
 }

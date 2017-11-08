@@ -32,4 +32,13 @@ public class LeafEdge extends Edge {
 
   }
 
+  @Override
+  public void insert(int value) {
+    values.add(value);
+  }
+
+  @Override
+  public Edge findLeaf() {
+    return this;
+  }
 }
