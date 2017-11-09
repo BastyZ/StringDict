@@ -69,14 +69,14 @@ public class Main {
     stopwatch.reset();
     makeDictionary(hlp,words);
     times.add(stopwatch.elapsedTime());
-    System.out.println("- - - -- - - - -- - - - - - - -- - - - - - - - - - - - - -");
+    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     System.out.println("Tiempo de Construcción   EXPERIMENTO 1");
     System.out.println("Patricia:     "+times.get(0));
     System.out.println("TST:          "+times.get(1));
     System.out.println("HLP:          "+times.get(2));
-    System.out.println("-----------------------------------------------------------");
-    List<String> randomWords = null;
-    List<String> missingWords = null;
+    System.out.println("-------------------------------------------------------------");
+    List<String> randomWords = new ArrayList<>();
+    List<String> missingWords = new ArrayList<>();
     LoremIpsum lore = new LoremIpsum();
     Random number = new Random();
     for (int i = 0; i < words.size()/10; i++) {
