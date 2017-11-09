@@ -80,16 +80,16 @@ public class Main {
     LoremIpsum lore = new LoremIpsum();
     Random number = new Random();
     for (int i = 0; i < words.size()/10; i++) {
-      randomWords.add(words.get(number.nextInt(words.size())));
+      randomWords.add(words.get(number.nextInt(words.size()-1)));
     }
     String[] miss = lore.getWords(49).split(" ");
-    for (int j = 0; j < 50; j++) {
+    for (int j = 0; j < 49; j++) {
       missingWords.add(miss[j]);
     }
     System.out.println("Tiempo de busqueda para "+randomWords.size()+" palabras");
     stopwatch.reset();
     for (int i = 0; i < randomWords.size(); i++) {
-      patricia.search(randomWords.get(i));
+      patricia.search(randomWords.get(i).replace(".","").replace(",",""));
     }
     times.add(stopwatch.elapsedTime()); // 3
     stopwatch.reset();
