@@ -40,7 +40,7 @@ if __name__ == '__main__':
                         sys.stderr.write("Not ascii Characters")
                         exit(-1)
                     if sentence != "" and sentence != "\n" and sentence != "\r\b":
-                        out.write(sentence)
+                        out.write(sentence.strip()+' ')
             print("Words " + str(number))
             out.close()
         else:
