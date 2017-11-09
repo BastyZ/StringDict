@@ -57,7 +57,7 @@ public class hashTableLP implements StringDictionary{
     if (test != -1){
       System.out.println("Inserción fallida, tabla de hash completa");
     } else {
-      System.out.println("Inserción exitosa en la posición "+test+ "de la tabla de hash");
+      //System.out.println("Inserción exitosa en la posición "+test+ "de la tabla de hash");
     }
   }
 
