@@ -12,9 +12,38 @@ public class InnerEdge extends Edge {
     this.children = sons;
   }
 
-  @Override
-  ArrayList<Edge> getChildren() {
+  InnerEdge(String key, Edge son1, Edge son2) {
+    super(key);
+    this.addChildren(son1,son2);
+  }
+
+  public ArrayList<Edge> getChildren() {
     return this.children;
+  }
+
+  @Override
+  public void clearChildren() {
+    this.children = new ArrayList<Edge>();
+  }
+
+  @Override
+  public void addChildren(Edge baby, Edge son) {
+    this.children.add(baby);
+    this.children.add(son);
+    Collections.sort(this.children);
+  }
+
+  @Override
+  public void leafInsertion(LeafReached e, int value) {
+    String lcp = Patricia.lcp(e.node.prefix(), e.insertKey);
+    for ( Edge node : this.children) {
+      if ( node.prefix() == e.getNode().prefix() ) {
+        Edge son1 = new LeafEdge(e.node.prefix().substring(lcp.length()), e.node.getValues(), node);
+        Edge son2 = new LeafEdge(e.insertKey.substring(lcp.length()), value, node);
+        node = new InnerEdge(lcp, son1, son2);
+        break;
+      }
+    }
   }
 
   public Edge searchNode(String key) throws Exception {
@@ -23,7 +52,8 @@ public class InnerEdge extends Edge {
       throw new Exception();
     } else if (key.length() < super.prefixSize() ) {
       // se nos acabó la palabra antes de hacer match
-      throw new EndOfPattern(this);
+      String lcp = Patricia.lcp(key,super.prefix());
+      throw new EndOfPattern(this, lcp, key.substring(lcp.length()) );
     }
     Collections.sort(this.children);
     String keySuffix = key.substring(super.prefixSize(),key.length());
@@ -35,7 +65,7 @@ public class InnerEdge extends Edge {
       }
     }
     // no hemos encontrado al hijo
-    throw new NoSuchChild(this);
+    throw new NoSuchChild(this, keySuffix);
   }
 
   public void leafInsertion(String key, int value) {

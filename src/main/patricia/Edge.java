@@ -15,14 +15,18 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
     this.prefix = key;
   }
 
-  ArrayList<Edge> getChildren() throws NoSuchChild {
-    throw new NoSuchChild(this);
-  }
-
   public abstract Edge searchNode(String key) throws Exception;
 
   public List<Integer> search(String key) throws Exception {
     return this.searchNode(key).getValues();
+  }
+
+  public Edge getFather() {
+    return null;
+  }
+
+  public boolean isRoot() {
+    return false;
   }
 
   List<Integer> getValues() {
@@ -49,11 +53,21 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
     return anEdge.prefix().compareTo(otherEdge.prefix());
   }
 
-  public abstract void leafInsertion(String key, int value);
-
   public void insert(int value) {
 
   }
 
   public abstract Edge findLeaf();
+
+  public abstract ArrayList<Edge> getChildren();
+
+  public void setPrefix(String prefix) {
+    this.prefix = prefix;
+  }
+
+  public abstract void clearChildren();
+
+  public abstract void addChildren(Edge baby, Edge son);
+
+  public abstract void leafInsertion(LeafReached e, int value);
 }

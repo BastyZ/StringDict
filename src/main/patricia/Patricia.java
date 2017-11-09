@@ -13,7 +13,7 @@ public class Patricia implements StringDictionary {
   @Override
   public void insert(String key, int value) {
     if (root.isNull()) {
-      root = new LeafEdge(key, value);
+      root = new LeafEdge(key, value, null);
       return;
     }
     Edge edge;
@@ -23,17 +23,23 @@ public class Patricia implements StringDictionary {
     } catch (EndOfPattern e) {
       // caso donde se acaba el patrón a seguir antes de llegar a una hoja
       Edge node = e.getNode();
-      Edge leaf = node.findLeaf();
-      leaf.leafInsertion(key,value);
+      String prefix = e.getLcp();
+      String suffix = node.prefix().substring(prefix.length());
+      String remnant = e.getLeftOver();
+      Edge son = new InnerEdge(suffix, node.getChildren());
+      Edge baby = new LeafEdge(remnant, value, node);
+      node.setPrefix(prefix);
+      node.clearChildren();
+      node.addChildren(baby,son);
     } catch (NoSuchChild e) {
       // caso donde no hay hijo que comience con la letra
       Edge node = e.getNode();
-      node.findLeaf().leafInsertion(key,value);
+      LeafEdge son = new LeafEdge(e.getSuffix(),value, node);
     } catch (LeafReached e) {
-      // TODO caso donde se llega a la hoja y no hay match exacto
-      e.getNode().leafInsertion(key,value);
+      // caso donde se llega a la hoja y no hay match exacto
+      e.getFather().leafInsertion(e, value);
     } catch (Exception e) {
-      // TODO para los otros casos
+      // para los otros casos
       System.out.println("Fallo inesperado: ");
       e.printStackTrace();
     }
@@ -53,4 +59,14 @@ public class Patricia implements StringDictionary {
     // TODO aplicar función
     return 0;
   }
+
+  static String lcp(String a, String b) {
+    String ans;
+    int i;
+    for (i = 0; i < Math.min(a.length(),b.length()) ; i++ ) {
+      if (a.charAt(i) != b.charAt(i)) break;
+    }
+    return a.substring(0,i);
+  }
+
 }
