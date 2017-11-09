@@ -3,7 +3,6 @@ package main.tst;
 import java.util.ArrayList;
 import java.util.List;
 import main.StringDictionary;
-import main.patricia.Edge;
 
 public class tst implements StringDictionary {
   private ItstNode root;
@@ -76,7 +75,7 @@ public class tst implements StringDictionary {
   }
 
   @Override
-  public Edge getSize() {
+  public long getSize() {
     return (sigma.size()*2 + root.getSize() + 8*2);
   }
 
