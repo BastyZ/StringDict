@@ -19,7 +19,10 @@ public class hashTableLP implements StringDictionary{
 
   /*Funcion de hash*/
   private int code(String key){
-    return (Math.abs(key.hashCode())%SIZE);
+    int h = key.hashCode();
+    int d = h%SIZE;
+    int f = Math.abs(d);
+    return f;
 }
 
   @Override
@@ -106,5 +109,17 @@ public class hashTableLP implements StringDictionary{
   @Override
   public long getSize() {
     return (long)SIZE;
+  }
+
+  public float mindFullness (){
+    int n=0;
+    for (hashItem item : table){
+      if (item == null){
+        n++;
+      }
+    }
+    int l = SIZE - n;
+    float mf = (l / SIZE) * 100;
+    return mf;
   }
 }
