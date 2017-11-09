@@ -70,10 +70,10 @@ public class Main {
     makeDictionary(hlp,words);
     times.add(stopwatch.elapsedTime());
     System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-    System.out.println("Tiempo de Construcción   EXPERIMENTO 1");
-    System.out.println("Patricia:     "+times.get(0));
-    System.out.println("TST:          "+times.get(1));
-    System.out.println("HLP:          "+times.get(2));
+    System.out.println("Tiempo de Construcción y Tamaño   EXPERIMENTO 1");
+    System.out.println("Patricia:     "+times.get(0)+"\t"+patricia.getSize()+" bytes");
+    System.out.println("TST:          "+times.get(1)+"\t"+tst.getSize()+" bytes");
+    System.out.println("HLP:          "+times.get(2)+"\t"+hlp.getSize()+" bytes");
     System.out.println("-------------------------------------------------------------");
     List<String> randomWords = new ArrayList<>();
     List<String> missingWords = new ArrayList<>();

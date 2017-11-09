@@ -38,7 +38,7 @@ public class Patricia implements StringDictionary {
     } catch (LeafReached e) {
       // caso donde se llega a la hoja y no hay match exacto
       if (e.getFather() == null) {
-        // TODO father es root, por lo que hay que hacer el nuevo root
+        //father es root, por lo que hay que hacer el nuevo root
         root = new InnerEdge(lcp(e.getNode().prefix(),key),
             new LeafEdge(e.getNode().prefix(),e.getNode().getValues(),root),
             new LeafEdge(key,value,root));
@@ -61,10 +61,8 @@ public class Patricia implements StringDictionary {
     }
   }
 
-  @Override
   public long getSize() {
-    // TODO aplicar función
-    return 0;
+    return root.getSize();
   }
 
   static String lcp(String a, String b) {

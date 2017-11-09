@@ -46,6 +46,15 @@ public class InnerEdge extends Edge {
     }
   }
 
+  @Override
+  public long getSize() {
+    long childrenSize = 0;
+    for (Edge son : this.children) {
+      childrenSize += son.getSize();
+    }
+    return 4*super.prefixSize()+childrenSize;
+  }
+
   public Edge searchNode(String key) throws Exception {
     if (this.children.isEmpty()) {
       // nunca deberían suceder ninguna de estas dos cosas

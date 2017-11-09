@@ -75,4 +75,9 @@ public class LeafEdge extends Edge {
   public void leafInsertion(LeafReached e, int value) {
 
   }
+
+  @Override
+  public long getSize() {
+    return (32/4)*this.values.size()+4*this.prefix().length();
+  }
 }

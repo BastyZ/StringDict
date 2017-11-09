@@ -38,6 +38,11 @@ public class NullEdge extends Edge {
 
   }
 
+  @Override
+  public long getSize() {
+    return 0;
+  }
+
   public Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern {
     return null;
   }

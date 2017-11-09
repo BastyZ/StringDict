@@ -70,4 +70,7 @@ abstract class Edge implements Comparator<Edge>, Comparable<Edge> {
   public abstract void addChildren(Edge baby, Edge son);
 
   public abstract void leafInsertion(LeafReached e, int value);
+
+  public abstract long getSize();
+
 }
