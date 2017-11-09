@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     ArrayList<Path> books = new ArrayList<Path>();
-    final File assetsLocation = new File("/text");
+    final File assetsLocation = new File("C:\\Users\\BastyZ\\IdeaProjects\\StringDict\\src\\main\\text");
     for (final File book : assetsLocation.listFiles() ){
       books.add(book.toPath());
     }
@@ -36,7 +37,7 @@ public class Main {
 
   private static void runExperimentOne(Path book) throws IOException {
     ArrayList<Double> times = new ArrayList<>();
-    List<String> words = null;
+    ArrayList<String> words = new ArrayList<>();
     Scanner sc = new Scanner(book);
     while (sc.hasNextLine()) {
       String line = sc.nextLine(); // debería ser solo una
@@ -45,9 +46,11 @@ public class Main {
         words.add(word);
       }
     }
-    List<Character> chars = null;
-    for (char a : alfabeta.toCharArray()) {
-      chars.add(a);
+    char[] chars = alfabeta.toCharArray();
+    List<char[]> asList = Arrays.asList(chars);
+    List<Character> listC = new ArrayList<Character>();
+    for (char c : chars) {
+      listC.add(c);
     }
     // ya tenemos todas las palabras en orden en words
     System.out.println("----------------------------------------------------------");
@@ -56,7 +59,7 @@ public class Main {
     System.out.println("Posee "+words.size()+" palabras");
     StringDictionary patricia = new Patricia();
     StringDictionary hlp = new hashTableLP(words.size());
-    StringDictionary tst = new tst(chars);
+    StringDictionary tst = new tst( listC );
     Stopwatch stopwatch = new Stopwatch();
     makeDictionary(patricia,words);
     times.add(stopwatch.elapsedTime());

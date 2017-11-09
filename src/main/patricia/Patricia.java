@@ -37,7 +37,14 @@ public class Patricia implements StringDictionary {
       LeafEdge son = new LeafEdge(e.getSuffix(),value, node);
     } catch (LeafReached e) {
       // caso donde se llega a la hoja y no hay match exacto
-      e.getFather().leafInsertion(e, value);
+      if (e.getFather() == null) {
+        // TODO father es root, por lo que hay que hacer el nuevo root
+        root = new InnerEdge(lcp(e.getNode().prefix(),key),
+            new LeafEdge(e.getNode().prefix(),e.getNode().getValues(),root),
+            new LeafEdge(key,value,root));
+      } else {
+        e.getFather().leafInsertion(e, value);
+      }
     } catch (Exception e) {
       // para los otros casos
       System.out.println("Fallo inesperado: ");

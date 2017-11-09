@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeafEdge extends Edge {
-  private List<Integer> values;
+  private List<Integer> values = new ArrayList<>();
   private Edge father;
 
   LeafEdge(String key, int value, Edge dad) {

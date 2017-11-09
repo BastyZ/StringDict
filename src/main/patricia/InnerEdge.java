@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class InnerEdge extends Edge {
 
-  private ArrayList<Edge> children;
+  private ArrayList<Edge> children = new ArrayList<>();
 
   InnerEdge(String key, ArrayList<Edge> sons) {
     super(key);
@@ -47,7 +47,7 @@ public class InnerEdge extends Edge {
   }
 
   public Edge searchNode(String key) throws Exception {
-    if (!super.prefix().startsWith(key) || this.children.isEmpty()) {
+    if (this.children.isEmpty()) {
       // nunca deberían suceder ninguna de estas dos cosas
       throw new Exception();
     } else if (key.length() < super.prefixSize() ) {
@@ -61,7 +61,7 @@ public class InnerEdge extends Edge {
     for (Edge son : this.children) {
       if ( son.prefix().startsWith( son.prefix() ) ) {
         // hemos encontrado un hijo por el que bajar
-        return searchNode(keySuffix);
+        return son.searchNode(keySuffix);
       }
     }
     // no hemos encontrado al hijo
