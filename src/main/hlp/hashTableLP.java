@@ -104,7 +104,13 @@ public class hashTableLP implements StringDictionary{
 
   @Override
   public long getSize() {
-    return (long)SIZE;
+    long s = 0;
+    for (hashItem item : table){
+      if (item != null){
+        s = s + item.getSize();
+      }
+    }
+    return s;
   }
 
   public float mindFullness (){

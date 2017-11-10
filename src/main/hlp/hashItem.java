@@ -15,4 +15,11 @@ public class hashItem{
   public void setValue(int v){
     value.add(v);
   }
+
+  public long getSize(){
+    if (value.isEmpty()) {return 0;}
+    else {
+      return (8 * value.size()) + (4 * key.length());
+    }
+  }
 }
