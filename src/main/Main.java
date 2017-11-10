@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 import main.hlp.hashTableLP;
 import main.patricia.Patricia;
 import main.tst.tst;
@@ -32,8 +35,44 @@ public class Main {
     for (final Path book: books) {
       runExperimentOne(book);
     }
-
+    books = new ArrayList<>();
+    final File compBooksLocation = new File("C:\\Users\\BastyZ\\IdeaProjects\\StringDict\\src\\main\\text\\comparison");
+    for (final File book: compBooksLocation.listFiles()) {
+      books.add(book.toPath());
+    }
+    //runExperimentTwo(books.get(1),books.get(4)); // 2048
+    //runExperimentTwo(books.get(2),books.get(5)); // 524288
   }
+
+  private static void runExperimentTwo(Path path, Path path1) throws IOException {
+    ArrayList<String> book1 = new ArrayList<>();
+    ArrayList<String> book2 = new ArrayList<>();
+    Scanner sc = new Scanner(path);
+    while (sc.hasNextLine()){
+      String line = sc.nextLine(); // debería ser solo una
+      String[] line_words = line.split(" ");
+      Collections.addAll(book1, line_words);
+    }
+    sc = new Scanner(path1);
+    while (sc.hasNextLine()){
+      String line = sc.nextLine(); // debería ser solo una
+      String[] line_words = line.split(" ");
+      Collections.addAll(book2, line_words);
+    }
+    ArrayList<String> concatenation = new ArrayList<>();
+    concatenation.addAll(book1);
+    concatenation.addAll(book2);
+    float countConcatenation = book1.size()+book2.size();
+    Set<String> hs = new HashSet<>();
+    hs.addAll(concatenation);
+    concatenation.clear();
+    concatenation.addAll(hs);
+    float dif = 0;
+    for (String word : concatenation) {
+      // TODO contar la cantidad de apariciones en cada texto y agregar la abs(resta) a dif
+    }
+  }
+
 
   private static void runExperimentOne(Path book) throws IOException {
     ArrayList<Double> times = new ArrayList<>();
@@ -53,8 +92,8 @@ public class Main {
       listC.add(c);
     }
     // ya tenemos todas las palabras en orden en words
-    System.out.println("----------------------------------------------------------");
-    System.out.println("----------------------------------------------------------");
+    System.out.println("--------------------------------------------------------------");
+    System.out.println("--------------------------------------------------------------");
     System.out.println("El libro "+book.getFileName());
     System.out.println("Posee "+words.size()+" palabras");
     StringDictionary patricia = new Patricia();
