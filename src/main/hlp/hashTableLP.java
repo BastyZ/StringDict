@@ -34,7 +34,9 @@ public class hashTableLP implements StringDictionary{
       table[h] = new hashItem(key,value);
       test = -1;
     } else {
-      if (h == (SIZE - 1)){
+      if (table[h].key.equals(key)){ //si tiene la misma llave
+        table[h].setValue(value);
+      } if (h == (SIZE - 1)){
         //si h es el final del arreglo empiezo a buscar desde el principio de este
         test = 0;
       } else {
@@ -65,13 +67,7 @@ public class hashTableLP implements StringDictionary{
   }
 
   @Override
-  public List<Integer> search(String key) {
-    List<Integer> l = new ArrayList<>();
-    l.add(retrieve(key));
-    return l;
-  }
-
-  private Integer retrieve(String key){
+  public List<Integer> search(String key){
     int test;
     int h = code(key);
 
