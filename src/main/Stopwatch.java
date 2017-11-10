@@ -8,7 +8,7 @@ public class Stopwatch {
    * Initializes a new stopwatch.
    */
   public Stopwatch() {
-    start = System.currentTimeMillis();
+    start = System.nanoTime();
   }
 
 
@@ -18,11 +18,11 @@ public class Stopwatch {
    * @return elapsed CPU time (in seconds) since the stopwatch was created
    */
   public double elapsedTime() {
-    long now = System.currentTimeMillis();
-    return (now - start) / 1000.0;
+    long now = System.nanoTime();
+    return (now - start) / 1000000.0;
   }
 
   public void reset() {
-    this.start = System.currentTimeMillis();
+    this.start = System.nanoTime();
   }
 }

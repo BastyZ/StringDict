@@ -77,11 +77,8 @@ public class Main {
         new hashTableLP(book2.size()), book1, book2);
   }
 
-  private static void experimentTwo(
-      StringDictionary dict1,
-      StringDictionary dict2,
-      ArrayList<String> book1,
-      ArrayList<String> book2) {
+  private static void experimentTwo(StringDictionary dict1, StringDictionary dict2,
+      ArrayList<String> book1, ArrayList<String> book2) {
   // calcular tiempos de construcción
     Stopwatch stopwatch = new Stopwatch();
     ArrayList<Double> times = new ArrayList<>();
