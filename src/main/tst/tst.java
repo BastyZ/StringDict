@@ -20,7 +20,7 @@ public class tst implements StringDictionary {
 
   public tst(List<Character> chars){
     this.sigma = chars;
-    root = new tstNode('#'); //donde # marca el final de una palabra
+    root = new tstNode('$'); //donde $ marca el final de una palabra
   }
 
   /* si la llave es valida
@@ -29,7 +29,7 @@ public class tst implements StringDictionary {
   @Override
   public List<Integer> search(String key) {
     if (validString(key)){
-      key = key + '#';
+      key = key + '$';
       return recursiveSearch(root,key,0);
     }
     return null;
