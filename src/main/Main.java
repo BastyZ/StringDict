@@ -42,8 +42,10 @@ public class Main {
     for (final File book: compBooksLocation.listFiles()) {
       books.add(book.toPath());
     }
-    //runExperimentTwo(books.get(1),books.get(4)); // 2048
-    //runExperimentTwo(books.get(2),books.get(5)); // 524288
+    System.out.println("       -------  Libro de orden 2048     ---------     ");
+    runExperimentTwo(books.get(1),books.get(4)); // 2048
+    System.out.println("       -------  Libro de orden 524288   ---------     ");
+    runExperimentTwo(books.get(2),books.get(5)); // 524288
   }
 
   private static void runExperimentTwo(Path path, Path path1) throws IOException {
@@ -98,6 +100,7 @@ public class Main {
     System.out.println("Const. del primer libro: \t"+times.get(0));
     System.out.println("Const. del segundo libro:\t"+times.get(1));
     System.out.println("Busqueda: \t"+times.get(2));
+    System.out.println("Similitud: "+simDict);
     System.out.println("--------------------------------------------------------------");
   }
 
@@ -107,8 +110,9 @@ public class Main {
     float countConcatenation = book1.size()+book2.size();
     ArrayList<String> unionSet = makeSet(book1, book2);
     float dif = 0;
+    int a = 0;
+    int b = 0;
     for (String word : unionSet) {
-      int a,b;
       a = dict1.search(word).size();
       b = dict2.search(word).size();
       dif += Math.abs(a-b);
@@ -168,9 +172,9 @@ public class Main {
     times.add(stopwatch.elapsedTime());
     System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     System.out.println("Tiempo de Construcción y Tamaño   EXPERIMENTO 1");
-    System.out.println("Patricia:     "+times.get(0)+"\t"+patricia.getSize()+" bytes");
-    System.out.println("TST:          "+times.get(1)+"\t"+tst.getSize()+" bytes");
-    System.out.println("HLP:          "+times.get(2)+"\t"+hlp.getSize()+" bytes");
+    System.out.println("Patricia:     \t"+times.get(0)+"\t"+patricia.getSize()+" bytes");
+    System.out.println("TST:          \t"+times.get(1)+"\t"+tst.getSize()+" bytes");
+    System.out.println("HLP:          \t"+times.get(2)+"\t"+hlp.getSize()+" bytes");
     System.out.println("-------------------------------------------------------------");
     List<String> randomWords = new ArrayList<>();
     List<String> missingWords = new ArrayList<>();

@@ -1,5 +1,6 @@
 package main.hlp;
 
+import java.util.ArrayList;
 import java.util.List;
 import main.StringDictionary;
 
@@ -70,7 +71,7 @@ public class hashTableLP implements StringDictionary{
 
     if (table[h] == null){
       //si la posición inicial del hashCode esta vacio e spor que no existe
-      return null;
+      return new ArrayList();
     } else if (table[h].key.equals(key)){
       //si coincide y es el mismo elemento, retornamos el valor
       return table[h].value;
@@ -84,7 +85,7 @@ public class hashTableLP implements StringDictionary{
 
     while((test != -1) && (test != h)){
       if (table[test] == null){
-        return null;
+        return new ArrayList<>();
       } else if (table[test].key.equals(key)){
         return table[test].value;
       } else {
@@ -96,7 +97,7 @@ public class hashTableLP implements StringDictionary{
       }
     }
 
-    return null;
+    return new ArrayList<>();
   }
 
   @Override

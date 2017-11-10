@@ -1,5 +1,6 @@
 package main.patricia;
 
+import java.util.ArrayList;
 import java.util.List;
 import main.StringDictionary;
 
@@ -58,7 +59,7 @@ public class Patricia implements StringDictionary {
     try {
       return root.search(key+"$");
     } catch (Exception e) {
-      return null;
+      return new ArrayList<>();
     }
   }
 

@@ -32,7 +32,7 @@ public class tst implements StringDictionary {
       key = key + '$';
       return recursiveSearch(root,key,0);
     }
-    return null;
+    return new ArrayList<>();
   }
 
   /*si el nodo es null retornamos un arreglo vacio
