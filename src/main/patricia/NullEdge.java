@@ -43,6 +43,7 @@ public class NullEdge extends Edge {
     return 0;
   }
 
+  @SuppressWarnings("SameReturnValue")
   public Edge searchNode(String key, int value) throws NoSuchChild, EndOfPattern {
     return null;
   }
@@ -54,10 +55,6 @@ public class NullEdge extends Edge {
 
   public List<Integer> search(String key) throws Exception {
     throw new Exception();
-  }
-
-  public void leafInsertion(String key, int value) {
-
   }
 
 }

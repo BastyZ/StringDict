@@ -1,8 +1,5 @@
 package main.hlp;
 
-import java.lang.Math.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import main.StringDictionary;
 
@@ -21,8 +18,7 @@ public class hashTableLP implements StringDictionary{
   private int code(String key){
     int h = key.hashCode();
     int d = h%SIZE;
-    int f = Math.abs(d);
-    return f;
+    return Math.abs(d);
 }
 
   @Override
@@ -122,7 +118,6 @@ public class hashTableLP implements StringDictionary{
       }
     }
     int l = SIZE - n;
-    float mf = (l / SIZE) * 100;
-    return mf;
+    return (float) ((l / SIZE) * 100);
   }
 }

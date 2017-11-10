@@ -30,7 +30,9 @@ public class Main {
     ArrayList<Path> books = new ArrayList<Path>();
     final File assetsLocation = new File("C:\\Users\\BastyZ\\IdeaProjects\\StringDict\\src\\main\\text");
     for (final File book : assetsLocation.listFiles() ){
-      books.add(book.toPath());
+      if (book.isFile()) {
+        books.add(book.toPath());
+      }
     }
     for (final Path book: books) {
       runExperimentOne(book);
@@ -59,18 +61,53 @@ public class Main {
       String[] line_words = line.split(" ");
       Collections.addAll(book2, line_words);
     }
+    // calcular tiempos de construcción
+    StringDictionary p1 = new Patricia();
+    StringDictionary p2 = new Patricia();
+    Stopwatch stopwatch = new Stopwatch();
+    ArrayList<Double> times = new ArrayList<>();
+    // tiempos de construcción
+    makeDictionary(p1,book1);
+    times.add(stopwatch.elapsedTime()); // 0
+    stopwatch.reset();
+    makeDictionary(p1,book2);
+    times.add(stopwatch.elapsedTime()); // 1
+    // calcular tiempos de búsqueda
+    stopwatch.reset();
+    float simPatricia = similitude(p1,p2, book1, book2);
+    times.add(stopwatch.elapsedTime()); // 2
+  }
+
+  private static float similitude(StringDictionary dict1, StringDictionary dict2,
+      ArrayList<String> book1, ArrayList<String> book2) {
+    // countConcatenation es count(T1T2)
+    float countConcatenation = book1.size()+book2.size();
+    ArrayList<String> unionSet = makeSet(book1, book2);
+    float dif = 0;
+    for (String word : unionSet) {
+      int a,b;
+      a = dict1.search(word).size();
+      b = dict2.search(word).size();
+      dif += Math.abs(a-b);
+    }
+    return 1-(dif/countConcatenation);
+  }
+
+  /** Return set of words of union of given String sets
+   *
+   * @param book1
+   * @param book2
+   * @return book1 Union book2
+   */
+  private static ArrayList<String> makeSet(ArrayList<String> book1, ArrayList<String> book2) {
     ArrayList<String> concatenation = new ArrayList<>();
     concatenation.addAll(book1);
     concatenation.addAll(book2);
-    float countConcatenation = book1.size()+book2.size();
     Set<String> hs = new HashSet<>();
     hs.addAll(concatenation);
     concatenation.clear();
     concatenation.addAll(hs);
-    float dif = 0;
-    for (String word : concatenation) {
-      // TODO contar la cantidad de apariciones en cada texto y agregar la abs(resta) a dif
-    }
+    return concatenation;
   }
 
 
@@ -81,9 +118,7 @@ public class Main {
     while (sc.hasNextLine()) {
       String line = sc.nextLine(); // debería ser solo una
       String[] line_words = line.split(" ");
-      for (String word : line_words) {
-        words.add(word);
-      }
+      words.addAll(Arrays.asList(line_words));
     }
     char[] chars = alfabeta.toCharArray();
     List<char[]> asList = Arrays.asList(chars);
@@ -170,7 +205,7 @@ public class Main {
     System.out.println("TST:          "+times.get(7));
     System.out.println("HLP:          "+times.get(8));
     System.out.println("-----------------------------------------------------------");
-
+    sc.close();
   }
 
   private static int gal(List<String> words) {
@@ -185,7 +220,7 @@ public class Main {
   private static void makeDictionary(StringDictionary dictionary, List<String> words) {
     int value = 0;
     for (String word : words) {
-      dictionary.insert(word+"$",value);
+      dictionary.insert(word,value);
       value++;
     }
   }

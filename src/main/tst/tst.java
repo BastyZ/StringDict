@@ -69,7 +69,7 @@ public class tst implements StringDictionary {
   @Override
   public void insert(String key, int value) {
     if (validString(key)){
-      key = key + '#';
+      key = key + '$';
       root.insert(key,value,0);
     }
   }

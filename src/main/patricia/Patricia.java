@@ -12,6 +12,7 @@ public class Patricia implements StringDictionary {
 
   @Override
   public void insert(String key, int value) {
+    key = key+"$";
     if (root.isNull()) {
       root = new LeafEdge(key, value, null);
       return;
@@ -55,7 +56,7 @@ public class Patricia implements StringDictionary {
   @Override
   public List<Integer> search(String key) {
     try {
-      return root.search(key);
+      return root.search(key+"$");
     } catch (Exception e) {
       return null;
     }

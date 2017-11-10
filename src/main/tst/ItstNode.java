@@ -3,21 +3,21 @@ package main.tst;
 import java.util.List;
 
 public interface ItstNode {
-  public boolean isNull();
-  public String toString();
+  boolean isNull();
+  String toString();
 
-  public void setValue(int value);
-  public void setLeft (ItstNode node);
-  public void setMiddle (ItstNode node);
-  public void setRight (ItstNode node);
+  void setValue(int value);
+  void setLeft(ItstNode node);
+  void setMiddle(ItstNode node);
+  void setRight(ItstNode node);
 
-  public ItstNode insert(String key, int value, int index);
+  ItstNode insert(String key, int value, int index);
 
-  public List<Integer> getValue();
-  public char getData();
-  public ItstNode getLeftChild();
-  public ItstNode getMiddleChild();
-  public ItstNode getRightChild();
-  public int getSize();
+  List<Integer> getValue();
+  char getData();
+  ItstNode getLeftChild();
+  ItstNode getMiddleChild();
+  ItstNode getRightChild();
+  int getSize();
 
 }

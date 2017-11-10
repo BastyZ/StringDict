@@ -2,6 +2,7 @@ package main.patricia;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class InnerEdge extends Edge {
 
@@ -37,7 +38,7 @@ public class InnerEdge extends Edge {
   public void leafInsertion(LeafReached e, int value) {
     String lcp = Patricia.lcp(e.node.prefix(), e.insertKey);
     for ( Edge node : this.children) {
-      if ( node.prefix() == e.getNode().prefix() ) {
+      if (Objects.equals(node.prefix(), e.getNode().prefix())) {
         Edge son1 = new LeafEdge(e.node.prefix().substring(lcp.length()), e.node.getValues(), node);
         Edge son2 = new LeafEdge(e.insertKey.substring(lcp.length()), value, node);
         node = new InnerEdge(lcp, son1, son2);
@@ -75,10 +76,6 @@ public class InnerEdge extends Edge {
     }
     // no hemos encontrado al hijo
     throw new NoSuchChild(this, keySuffix);
-  }
-
-  public void leafInsertion(String key, int value) {
-    // TODO insertion starting on leaf
   }
 
   @Override
