@@ -47,6 +47,11 @@ public class Main {
   }
 
   private static void runExperimentTwo(Path path, Path path1) throws IOException {
+    List<Character> listC = new ArrayList<Character>();
+    char[] chars = alfabeta.toCharArray();
+    for (char c : chars) {
+      listC.add(c);
+    }
     ArrayList<String> book1 = new ArrayList<>();
     ArrayList<String> book2 = new ArrayList<>();
     Scanner sc = new Scanner(path);
@@ -61,21 +66,39 @@ public class Main {
       String[] line_words = line.split(" ");
       Collections.addAll(book2, line_words);
     }
-    // calcular tiempos de construcción
-    StringDictionary p1 = new Patricia();
-    StringDictionary p2 = new Patricia();
+    System.out.println("PATRICIA:");
+    experimentTwo(new Patricia(),new Patricia(), book1,book2);
+    System.out.println("TST:");
+    experimentTwo(new tst(listC),new tst(listC),book1,book2);
+    System.out.println("HT+LP:");
+    experimentTwo(new hashTableLP(book1.size()),
+        new hashTableLP(book2.size()), book1, book2);
+  }
+
+  private static void experimentTwo(
+      StringDictionary dict1,
+      StringDictionary dict2,
+      ArrayList<String> book1,
+      ArrayList<String> book2) {
+  // calcular tiempos de construcción
     Stopwatch stopwatch = new Stopwatch();
     ArrayList<Double> times = new ArrayList<>();
     // tiempos de construcción
-    makeDictionary(p1,book1);
+    makeDictionary(dict1,book1);
     times.add(stopwatch.elapsedTime()); // 0
     stopwatch.reset();
-    makeDictionary(p1,book2);
+    makeDictionary(dict2,book2);
     times.add(stopwatch.elapsedTime()); // 1
     // calcular tiempos de búsqueda
     stopwatch.reset();
-    float simPatricia = similitude(p1,p2, book1, book2);
+    float simDict = similitude(dict1,dict2, book1, book2);
     times.add(stopwatch.elapsedTime()); // 2
+    // imprimir
+    System.out.println("Tiempos de");
+    System.out.println("Const. del primer libro: \t"+times.get(0));
+    System.out.println("Const. del segundo libro:\t"+times.get(1));
+    System.out.println("Busqueda: \t"+times.get(2));
+    System.out.println("--------------------------------------------------------------");
   }
 
   private static float similitude(StringDictionary dict1, StringDictionary dict2,
