@@ -36,7 +36,8 @@ public class hashTableLP implements StringDictionary{
     } else {
       if (table[h].key.equals(key)){ //si tiene la misma llave
         table[h].setValue(value);
-      } else if (h == (SIZE - 1)){
+        return;
+      }if (h == (SIZE - 1)){
         //si h es el final del arreglo empiezo a buscar desde el principio de este
         test = 0;
       } else {

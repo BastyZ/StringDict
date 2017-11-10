@@ -102,6 +102,6 @@ public class tstNode implements ItstNode{
 
   @Override
   public int getSize() {
-    return (left.getSize() + middle.getSize() + right.getSize() + 4*value.size() + 50);
+    return (left.getSize() + middle.getSize() + right.getSize() + 8*value.size() + 4);
   }
 }

@@ -67,6 +67,6 @@ public class NulltstNode implements ItstNode {
 
   @Override
   public int getSize() {
-    return 8;
+    return 0;
   }
 }

@@ -76,7 +76,7 @@ public class tst implements StringDictionary {
 
   @Override
   public long getSize() {
-    return (sigma.size()*2 + root.getSize() + 8*2);
+    return (sigma.size()*4 + root.getSize());
   }
 
   private boolean validString (String str){
