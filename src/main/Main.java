@@ -28,7 +28,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
     ArrayList<Path> books = new ArrayList<Path>();
-    final File assetsLocation = new File("C:\\Users\\BastyZ\\IdeaProjects\\StringDict\\src\\main\\text");
+    final File assetsLocation = new File("C:\\Users\\Ann\\IdeaProjects\\StringDict\\src\\main\\text");
     for (final File book : assetsLocation.listFiles() ){
       if (book.isFile()) {
         books.add(book.toPath());
@@ -38,7 +38,7 @@ public class Main {
       runExperimentOne(book);
     }
     books = new ArrayList<>();
-    final File compBooksLocation = new File("C:\\Users\\BastyZ\\IdeaProjects\\StringDict\\src\\main\\text\\comparison");
+    final File compBooksLocation = new File("C:\\Users\\Ann\\IdeaProjects\\StringDict\\src\\main\\text\\comparison");
     for (final File book: compBooksLocation.listFiles()) {
       books.add(book.toPath());
     }
